@@ -1,5 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import { TimeRangeDropdown, TimeRange } from "@/components/TimeRangeDropdown";
+import { filterByTimeRange } from "@/lib/timeRange";
+
 import {
     Card,
     CardContent,
@@ -35,8 +39,9 @@ type Props = {
 
 export function InflationPanel({ cpi, corePce }: Props) {
     const isMounted = useMounted();
+    const [range, setRange] = useState<TimeRange>("12m");
 
-    const data = cpi.points.map((p) => {
+    const merged = cpi.points.map((p) => {
         const match = corePce.points.find((q) => q.date === p.date);
         return {
             date: p.date,
@@ -45,13 +50,18 @@ export function InflationPanel({ cpi, corePce }: Props) {
         };
     });
 
+    const data = filterByTimeRange(merged, range);
+
     if (!isMounted) return <div className="h-[360px] w-full bg-neutral-900/50 rounded-xl animate-pulse" />;
 
     return (
         <Card className="border-neutral-800 bg-neutral-900 shadow-xl">
-            <CardHeader className="pb-4">
-                <CardTitle className="text-neutral-100 font-medium tracking-tight">US Inflation — CPI vs Core PCE</CardTitle>
-                <CardDescription className="text-neutral-500">Raw Consumer Price Index & PCE Price Index</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                <div className="space-y-1">
+                    <CardTitle className="text-neutral-100 font-medium tracking-tight">US Inflation — CPI vs Core PCE</CardTitle>
+                    <CardDescription className="text-neutral-500">Raw Consumer Price Index & PCE Price Index</CardDescription>
+                </div>
+                <TimeRangeDropdown value={range} onChange={setRange} />
             </CardHeader>
 
             <CardContent className="h-[360px] px-6 pb-6 pt-0">

@@ -16,6 +16,9 @@ import {
 import { CartesianGrid, Line, Bar, ComposedChart, XAxis, YAxis } from "recharts";
 import { Series } from "@/lib/data";
 import { useMounted } from "@/hooks/use-mounted";
+import { useState } from "react";
+import { TimeRangeDropdown, TimeRange } from "@/components/TimeRangeDropdown";
+import { filterByTimeRange } from "@/lib/timeRange";
 
 const chartConfig = {
     nfp: {
@@ -35,7 +38,9 @@ type Props = {
 
 export function JobsPanel({ nfp, wages }: Props) {
     const isMounted = useMounted();
-    const data = nfp.points.map((p) => {
+    const [range, setRange] = useState<TimeRange>("12m");
+
+    const rawData = nfp.points.map((p) => {
         const match = wages.points.find((q) => q.date === p.date);
         return {
             date: p.date,
@@ -44,13 +49,18 @@ export function JobsPanel({ nfp, wages }: Props) {
         };
     });
 
+    const data = filterByTimeRange(rawData, range);
+
     if (!isMounted) return <div className="h-[360px] w-full bg-neutral-900/50 rounded-xl animate-pulse" />;
 
     return (
         <Card className="border-neutral-800 bg-neutral-900 shadow-xl">
-            <CardHeader className="pb-4">
-                <CardTitle className="text-neutral-100 font-medium">US Labor — NFP & Wages</CardTitle>
-                <CardDescription className="text-neutral-500">Monthly Nonfarm Payrolls & Wage Growth</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                <div className="space-y-1">
+                    <CardTitle className="text-neutral-100 font-medium">US Labor — NFP & Wages</CardTitle>
+                    <CardDescription className="text-neutral-500">Monthly Nonfarm Payrolls & Wage Growth</CardDescription>
+                </div>
+                <TimeRangeDropdown value={range} onChange={setRange} />
             </CardHeader>
 
             <CardContent className="h-[360px] px-6 pb-6 pt-0">
