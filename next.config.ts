@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
+const repoName = "/macro-dashboard";
+
 const nextConfig: NextConfig = {
   output: "export",
-  assetPrefix: "/macro-dashboard/",
-  basePath: "/macro-dashboard",
-  images: {
-    unoptimized: true,
-  },
+  basePath: repoName,
+  assetPrefix: `${repoName}/`,
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
