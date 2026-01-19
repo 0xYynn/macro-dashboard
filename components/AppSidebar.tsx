@@ -16,25 +16,22 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronRight, BarChart3, Briefcase, Activity, LineChart, PieChart, TrendingUp } from "lucide-react";
+import { ChevronRight, BarChart3, BadgeDollarSign, BadgePoundSterling, BadgeEuro, BadgeJapaneseYen, BadgeSwissFranc, LineChart, PieChart, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const nav = [
     {
-        title: "Economic Indicators",
+        title: "Countries",
         items: [
-            { title: "Dashboard", href: "/", icon: Activity },
-            { title: "Inflation", href: "/us/inflation", icon: TrendingUp },
-            { title: "Labor Market", href: "/us/jobs", icon: Briefcase },
-            { title: "Yield Curve", href: "/us/yield", icon: LineChart },
-        ],
-    },
-    {
-        title: "Risk & Equities",
-        items: [
-            { title: "S&P 500", href: "/risk/spx", icon: BarChart3 },
-            { title: "Volatility (VIX)", href: "/risk/vix", icon: PieChart },
+            { title: "United States", href: "/", icon: BadgeDollarSign },
+            { title: "Great Britain", href: "/us/inflation", icon: BadgePoundSterling },
+            { title: "Europe", href: "/us/jobs", icon: BadgeEuro },
+            { title: "Japan", href: "/us/yield", icon: BadgeJapaneseYen },
+            { title: "Australia", href: "/us/yield", icon: BadgeDollarSign },
+            { title: "Canada", href: "/us/yield", icon: BadgeDollarSign },
+            { title: "Switzerland", href: "/us/yield", icon: BadgeSwissFranc },
+            { title: "New Zealand", href: "/us/yield", icon: BadgeDollarSign },
         ],
     },
 ];
