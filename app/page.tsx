@@ -1,5 +1,5 @@
 import { loadAllMacroData } from "@/lib/data";
-import { SectionCards } from "@/components/SectionCards";
+import { DashboardSignals } from "@/components/DashboardSignals";
 import { InflationPanel } from "@/components/InflationPanel";
 import { JobsPanel } from "@/components/JobsPanel";
 import { YieldPanel } from "@/components/YieldPanel";
@@ -20,7 +20,7 @@ export default function Page() {
             </header>
 
             <div className="grid gap-8">
-                <SectionCards cpi={cpi} corePce={corePce} wages={wages} dgs2={dgs2} />
+                <DashboardSignals cpi={cpi} corePce={corePce} wages={wages} dgs2={dgs2} />
                 <InflationPanel cpi={cpi} corePce={corePce} />
                 <JobsPanel nfp={nfp} wages={wages} />
                 <YieldPanel dgs2={dgs2} />
