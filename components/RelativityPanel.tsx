@@ -72,14 +72,14 @@ export function RelativityPanel({ usdBias, horizon }: Props) {
     return (
         <div className="space-y-4">
             <h2 className="text-lg font-semibold">
-                Relativity Check (USD vs Crosses)
+                Relativity with Other Crosses
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {CROSS_FAMILIES.map(family => (
                     <Card
                         key={family}
-                        className="border border-[#1F2937] bg-[#111827]"
+                        className="border-neutral-800 bg-neutral-900 shadow-xl"
                     >
                         <CardHeader>
                             <CardTitle className="text-base">

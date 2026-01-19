@@ -71,12 +71,34 @@ export function SectionCards({
         },
     ];
 
+    const getTrendColor = (value: string) => {
+        switch (value) {
+            case "Cooling":
+            case "Easing":
+            case "Falling":
+            case "Bullish":
+                return "text-emerald-400"; // Greenish
+            case "Re-accelerating":
+            case "Tightening":
+            case "Rising":
+            case "Bearish":
+                return "text-rose-400"; // Reddish
+            case "Sticky":
+            case "Stable":
+            case "Range":
+            case "Neutral":
+                return "text-amber-400"; // Yellowish
+            default:
+                return "text-neutral-100";
+        }
+    };
+
     return (
         <div className="space-y-4">
             {/* Header row with dropdown */}
             <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold">
-                    USD Bias Dashboard
+                <h2 className="text-lg font-semibold text-neutral-100">
+                    USD Bias
                 </h2>
                 <HorizonDropdown value={horizon} onChange={onHorizonChange} />
             </div>
@@ -86,18 +108,17 @@ export function SectionCards({
                 {cards.map(card => (
                     <Card
                         key={card.title}
-                        className="border border-[#1F2937] bg-[#111827]"
-                    >
-                        <CardHeader>
-                            <CardTitle className="text-base">
+                        className="border-neutral-800 bg-neutral-900 shadow-xl">
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-neutral-100 font-medium tracking-tight">
                                 {card.title}
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-xl font-semibold mb-1">
+                            <p className={`text-2xl font-bold mb-1 ${getTrendColor(card.value)}`}>
                                 {card.value}
                             </p>
-                            <CardDescription>
+                            <CardDescription className="text-neutral-500">
                                 {card.description}
                             </CardDescription>
                         </CardContent>

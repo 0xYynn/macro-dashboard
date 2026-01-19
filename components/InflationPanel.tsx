@@ -18,7 +18,7 @@ import {
     type ChartConfig,
 } from "@/components/ui/chart";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import { Series } from "@/lib/data";
+import { MacroSeries } from "@/lib/types";
 import { useMounted } from "@/hooks/use-mounted";
 
 const chartConfig = {
@@ -33,8 +33,8 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 type Props = {
-    cpi: Series;
-    corePce: Series;
+    cpi: MacroSeries;
+    corePce: MacroSeries;
 };
 
 export function InflationPanel({ cpi, corePce }: Props) {

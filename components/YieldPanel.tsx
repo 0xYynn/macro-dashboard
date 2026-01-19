@@ -14,7 +14,7 @@ import {
     type ChartConfig,
 } from "@/components/ui/chart";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import { Series } from "@/lib/data";
+import { MacroSeries } from "@/lib/types";
 import { useMounted } from "@/hooks/use-mounted";
 import { useState } from "react";
 import { TimeRangeDropdown, TimeRange } from "@/components/TimeRangeDropdown";
@@ -28,7 +28,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 type Props = {
-    dgs2: Series;
+    dgs2: MacroSeries;
 };
 
 export function YieldPanel({ dgs2 }: Props) {
